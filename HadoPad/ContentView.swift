@@ -10,20 +10,23 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
-            HStack {
-                Spacer()
-                Text("添加玩家")
-                    .font(.title)
-                    .bold()
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 10)
-                    .foregroundStyle(.white)
-                    .background(Color.black)
-                    .border(Color.cyan, width: 2)
+        NavigationStack {
+            VStack(alignment: .center, spacing: 20) {
+                HStack {
+                    Spacer()
+                    NavigationLink(destination: Scanner()) {
+                        Text("添加玩家")
+                            .font(.title)
+                            .bold()
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 10)
+                            .foregroundStyle(.white)
+                            .background(Color.black)
+                            .border(Color.cyan, width: 2)
+                    }
                     .padding(.top, 35)
                     .padding(.trailing, 20)
-            }
+                }
             Spacer()
             VStack(spacing: 20) {
                 Spacer()
@@ -46,9 +49,10 @@ struct ContentView: View {
             Spacer()
             Text("")
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Image("pwabg").resizable().scaledToFill())
-        .ignoresSafeArea()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Image("pwabg").resizable().scaledToFill())
+            .ignoresSafeArea()
+        }
     }
 }
 
