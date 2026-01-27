@@ -58,6 +58,9 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
         
+        // 初始设置预览方向
+        updatePreviewLayerOrientation()
+        
         setupOverlay()
         setupScanRect()
         
@@ -66,6 +69,52 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
         }
     }
     
+    // 在布局更新时同步预览图层的方向与界面方向
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        previewLayer.frame = view.bounds
+        updatePreviewLayerOrientation()
+    }
+    
+    // 根据当前界面方向更新视频预览方向（适配 iPad / 横竖屏）
+    private func updatePreviewLayerOrientation() {
+        guard let connection = previewLayer?.connection else {
+            return
+        }
+        
+        // 获取当前界面方向
+        let interfaceOrientation = view.window?.windowScene?.interfaceOrientation
+        
+        // 适配 iOS 17+ 的新 API videoRotationAngle
+        if #available(iOS 17.0, *) {
+            // 根据界面方向设置对应的旋转角度（单位：度）
+            switch interfaceOrientation {
+            case .portrait:
+                connection.videoRotationAngle = 0.0 // 竖屏：0度
+            case .landscapeLeft:
+                connection.videoRotationAngle = 0 // 左横屏：90度
+            case .landscapeRight:
+                connection.videoRotationAngle = 0 // 右横屏：-90度（或270度）
+            case .portraitUpsideDown:
+                connection.videoRotationAngle = 180.0 // 倒竖屏：180度
+            default:
+                connection.videoRotationAngle = 0.0
+            }
+        } else {
+            switch interfaceOrientation {
+            case .portrait:
+                connection.videoOrientation = .portrait
+            case .landscapeLeft:
+                connection.videoOrientation = .landscapeLeft
+            case .landscapeRight:
+                connection.videoOrientation = .landscapeRight
+            case .portraitUpsideDown:
+                connection.videoOrientation = .portraitUpsideDown
+            default:
+                connection.videoOrientation = .portrait
+            }
+        }
+    }
     // 设置遮罩层
     func setupOverlay() {
         overlayView = UIView(frame: view.bounds)
