@@ -13,12 +13,14 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
     weak var delegate: QRCodeScannerViewControllerDelegate?
     var scanRectView: UIView!
     var overlayView: UIView!
-    var isScanningEnabled: Bool = true
+    var isScanning: Bool = true
     
+    // 视图加载时的设置
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.black
+        // 设置捕获会话
         captureSession = AVCaptureSession()
         
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
@@ -29,7 +31,7 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
         } catch {
             return
         }
-        
+        // 添加视频输入到捕获会话
         if captureSession.canAddInput(videoInput) {
             captureSession.addInput(videoInput)
         } else {
@@ -37,8 +39,10 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
             return
         }
         
+        // 添加元数据输出到捕获会话
         let metadataOutput = AVCaptureMetadataOutput()
         
+        // 设置扫描区域
         if captureSession.canAddOutput(metadataOutput) {
             captureSession.addOutput(metadataOutput)
             
@@ -62,6 +66,7 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
         }
     }
     
+    // 设置遮罩层
     func setupOverlay() {
         overlayView = UIView(frame: view.bounds)
         overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -84,6 +89,7 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
         view.addSubview(overlayView)
     }
     
+    // 设置扫描区域视图
     func setupScanRect() {
         let scanRectSize: CGFloat = 220
         let scanRect = CGRect(
@@ -150,6 +156,7 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
         }
     }
     
+    // 处理捕获到的元数据对象
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
 //        captureSession.stopRunning()
         print("metadataOutput")
@@ -183,9 +190,5 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
     
     override var prefersStatusBarHidden: Bool {
         return true
-    }
-    
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
     }
 }

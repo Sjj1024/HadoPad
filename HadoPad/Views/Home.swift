@@ -14,7 +14,7 @@ struct Home:View {
             VStack(alignment: .center, spacing: 20) {
                 HStack {
                     Spacer()
-                    NavigationLink(destination: Scanner()) {
+                    NavigationLink(destination: AddUser()) {
                         Text("添加玩家")
                             .font(.title)
                             .bold()

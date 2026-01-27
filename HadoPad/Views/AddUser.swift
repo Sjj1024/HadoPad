@@ -7,38 +7,42 @@
 
 import SwiftUI
 
-struct Scanner: View {
+struct AddUser: View {
     
     // back button
     @Environment(\.presentationMode) var presentationMode
 
-    
+    // back button end
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
-            HStack(alignment: .center) {
-                Text("< 返回")
-                    .font(.system(size: 20))
-                    .foregroundColor(.white)
-                    .onTapGesture {
-                        print("Back button tapped")
-                        presentationMode.wrappedValue.dismiss()
+        NavigationStack{
+            VStack(alignment: .center, spacing: 20) {
+                HStack(alignment: .center) {
+                    Text("< 返回")
+                        .font(.system(size: 20))
+                        .foregroundColor(.white)
+                        .onTapGesture {
+                            print("Back button tapped")
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    Spacer()
+                }
+                .padding(.leading, 20)
+                .padding(.top, 20)
+                VStack(spacing: 20) {
+                    Spacer()
+                    Image("logo").resizable()
+                        .scaledToFit()
+                        .frame(width: 250, height: 150)
+                    NavigationLink(destination: ScannerView()) {
+                        Image("huangbt")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 360)
                     }
+                    Spacer()
+                }
                 Spacer()
             }
-            .padding(.leading, 20)
-            .padding(.top, 20)
-            VStack(spacing: 20) {
-                Spacer()
-                Image("logo").resizable()
-                    .scaledToFit()
-                    .frame(width: 250, height: 150)
-                Image("huangbt")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 360)
-                Spacer()
-            }
-            Spacer()
         }
         .navigationBarBackButtonHidden()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -48,5 +52,5 @@ struct Scanner: View {
 }
 
 #Preview {
-    Scanner()
+    AddUser()
 }
