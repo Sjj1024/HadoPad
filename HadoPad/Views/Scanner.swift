@@ -8,8 +8,25 @@
 import SwiftUI
 
 struct Scanner: View {
+    
+    // back button
+    @Environment(\.presentationMode) var presentationMode
+
+    
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
+            HStack(alignment: .center) {
+                Text("< 返回")
+                    .font(.system(size: 20))
+                    .foregroundColor(.white)
+                    .onTapGesture {
+                        print("Back button tapped")
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                Spacer()
+            }
+            .padding(.leading, 20)
+            .padding(.top, 20)
             VStack(spacing: 20) {
                 Spacer()
                 Image("logo").resizable()
@@ -22,7 +39,6 @@ struct Scanner: View {
                 Spacer()
             }
             Spacer()
-            Text("")
         }
         .navigationBarBackButtonHidden()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
