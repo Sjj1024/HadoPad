@@ -16,6 +16,9 @@ struct ScannerView: View {
     @State var webURl: String = ""
     // debug
     @State var debug: Bool = false
+    
+    // back button
+    @Environment(\.presentationMode) var presentationMode
 
     // add user
     var addUser: some View {
@@ -63,6 +66,21 @@ struct ScannerView: View {
                 QRCodeScannerView(isScanning: $isScanning)
                     .ignoresSafeArea(.all)
                 VStack {
+                    HStack{
+                        Button(action: {
+                            // Handle close action
+                            print("关闭")
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.title2)
+                                .padding(4)
+                                .cornerRadius(10)
+                                .clipShape(Circle())
+                        }
+                        .padding(.trailing, 20)
+                        Spacer()
+                    }.padding(20)
                     Spacer()
                     if isAddUser {
                         addUser
@@ -73,7 +91,7 @@ struct ScannerView: View {
             }
         }
         .statusBarHidden(true)
-        .navigationBarBackButtonHidden(false)
+        .navigationBarBackButtonHidden(true)
         .onAppear {
             NotificationCenter.default.addObserver(forName: Notification.Name("QRCodeScanned"), object: nil, queue: .main) { notification in
                 let code = notification.object as? String ?? ""
