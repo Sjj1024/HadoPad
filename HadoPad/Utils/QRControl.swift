@@ -142,7 +142,9 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
     
     // 设置扫描区域视图
     func setupScanRect() {
+        // 设置扫描区域大小
         let scanRectSize: CGFloat = 320
+        // 创建扫描区域视图
         let scanRect = CGRect(
             x: (view.frame.width - scanRectSize) / 2,
             y: (view.frame.height - scanRectSize) / 2,
@@ -150,11 +152,14 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
             height: scanRectSize
         )
         
+        // 创建扫描区域视图
         scanRectView = UIView(frame: scanRect)
         
         // Adding corner indicators
         let cornerLength: CGFloat = 20
+        // 角标厚度
         let cornerThickness: CGFloat = 4
+        // 角标颜色
         let cornerColor = UIColor.green
                 
         // Top-left corner
@@ -176,6 +181,7 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
         view.addSubview(scanRectView)
     }
     
+    // 添加角标视图
     func addCorner(to view: UIView, x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, color: UIColor) {
         let corner = UIView(frame: CGRect(x: x, y: y, width: width, height: height))
         corner.backgroundColor = color
@@ -189,6 +195,7 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
         captureSession = nil
     }
     
+    // 视图即将出现时启动捕获会话
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -199,6 +206,7 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
         }
     }
     
+    // 视图即将消失时停止捕获会话
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
