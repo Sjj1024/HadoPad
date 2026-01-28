@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-
-struct Home:View {
+struct Home: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .center, spacing: 20) {
@@ -27,28 +26,30 @@ struct Home:View {
                     .padding(.top, 35)
                     .padding(.trailing, 20)
                 }
-            Spacer()
-            VStack(spacing: 20) {
                 Spacer()
-                Image("logo").resizable()
-                    .scaledToFit()
-                    .frame(width: 250, height: 150)
-                HStack(spacing: 40) {
-                    Image("redPad")
-                        .resizable()
+                VStack(spacing: 20) {
+                    Spacer()
+                    Image("logo").resizable()
                         .scaledToFit()
-                        .frame(width: 220)
-                    Image("bluePad")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 220)
+                        .frame(width: 250, height: 150)
+                    NavigationLink(destination: ScannerView(isAddUser: .constant(false))) {
+                        HStack(spacing: 40) {
+                            Image("redPad")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 220)
+                            Image("bluePad")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 220)
+                        }
+                    }
+                    Spacer()
+                    Spacer()
                 }
                 Spacer()
-                Spacer()
+                Text("")
             }
-            Spacer()
-            Text("")
-        }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Image("pwabg").resizable().scaledToFill())
             .ignoresSafeArea()

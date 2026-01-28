@@ -33,7 +33,7 @@ struct AddUser: View {
                     Image("logo").resizable()
                         .scaledToFit()
                         .frame(width: 250, height: 150)
-                    NavigationLink(destination: ScannerView()) {
+                    NavigationLink(destination: ScannerView(isAddUser: .constant(true))) {
                         Image("huangbt")
                             .resizable()
                             .scaledToFit()

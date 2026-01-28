@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ScannerView: View {
     // 扫描状态
-    @State private var isScanning = false
+    @State var isScanning = false
     // 扫描添加用户
-    @State private var isAddUser: Bool = false
+    @Binding var isAddUser: Bool
 
     // add user
     var addUser: some View {
@@ -27,8 +27,7 @@ struct ScannerView: View {
                     .foregroundColor(.white)
                     .shadow(radius: 5)
             }
-            .padding()
-            .background(Color.black.opacity(0.5))
+            .padding(.bottom, 100)
             .cornerRadius(10)
         }
     }
@@ -46,8 +45,7 @@ struct ScannerView: View {
                 .foregroundColor(.white)
                 .shadow(radius: 5)
         }
-        .padding()
-        .background(Color.black.opacity(0.5))
+        .padding(.bottom, 100)
         .cornerRadius(10)
     }
 
@@ -63,7 +61,6 @@ struct ScannerView: View {
                 } else {
                     addWebURL
                 }
-                Spacer()
             }
         }
     }
