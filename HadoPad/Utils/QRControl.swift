@@ -247,7 +247,8 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
         print("stopScanning")
     }
     
+    // 隐藏状态栏
     override var prefersStatusBarHidden: Bool {
-        return true
+        return false
     }
 }

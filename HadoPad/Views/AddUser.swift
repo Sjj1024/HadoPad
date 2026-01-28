@@ -17,11 +17,13 @@ struct AddUser: View {
         NavigationStack{
             VStack(alignment: .center, spacing: 20) {
                 HStack(alignment: .center) {
-                    Text("< 返回")
-                        .font(.system(size: 20))
-                        .foregroundColor(.white)
+                    Image(systemName: "chevron.backward")
+                        .font(.title2)
+                        .padding(4)
+                        .cornerRadius(10)
+                        .clipShape(Circle())
+                        .foregroundStyle(.blue)
                         .onTapGesture {
-                            print("Back button tapped")
                             presentationMode.wrappedValue.dismiss()
                         }
                     Spacer()
