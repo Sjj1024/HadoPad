@@ -123,7 +123,7 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
         overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
         let path = UIBezierPath(rect: overlayView.bounds)
-        let scanRectSize: CGFloat = 200
+        let scanRectSize: CGFloat = 300
         let scanRect = CGRect(
             x: (view.frame.width - scanRectSize) / 2,
             y: (view.frame.height - scanRectSize) / 2,
@@ -142,7 +142,7 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
     
     // 设置扫描区域视图
     func setupScanRect() {
-        let scanRectSize: CGFloat = 220
+        let scanRectSize: CGFloat = 320
         let scanRect = CGRect(
             x: (view.frame.width - scanRectSize) / 2,
             y: (view.frame.height - scanRectSize) / 2,
