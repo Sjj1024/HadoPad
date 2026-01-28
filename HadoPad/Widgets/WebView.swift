@@ -30,18 +30,18 @@ struct WebView: UIViewRepresentable {
         let webView = WKWebView(frame: .zero, configuration: webConfiguration)
 
         // debug script
-        if debug, let debugScript = WebView.loadJSFile(named: "vConsole") {
-            let fullScript = debugScript + "\nvar vConsole = new window.VConsole();"
-            let userScript = WKUserScript(
-                source: fullScript,
-                injectionTime: .atDocumentStart,
-                forMainFrameOnly: true
-            )
-            webView.configuration.userContentController.addUserScript(userScript)
-            if #available(iOS 16.4, *) {
-                webView.isInspectable = true
-            }
-        }
+        // if debug, let debugScript = WebView.loadJSFile(named: "vConsole") {
+        //     let fullScript = debugScript + "\nvar vConsole = new window.VConsole();"
+        //     let userScript = WKUserScript(
+        //         source: fullScript,
+        //         injectionTime: .atDocumentStart,
+        //         forMainFrameOnly: true
+        //     )
+        //     webView.configuration.userContentController.addUserScript(userScript)
+        //     if #available(iOS 16.4, *) {
+        //         webView.isInspectable = true
+        //     }
+        // }
         // config userAgent
         // if !userAgent.isEmpty {
         //     webView.customUserAgent = userAgent
@@ -58,14 +58,14 @@ struct WebView: UIViewRepresentable {
         webView.configuration.userContentController.addUserScript(scriptInjection)
 
         // load custom script
-        if let customScript = WebView.loadJSFile(named: "custom") {
-            let userScript = WKUserScript(
-                source: customScript,
-                injectionTime: .atDocumentStart,
-                forMainFrameOnly: true
-            )
-            webView.configuration.userContentController.addUserScript(userScript)
-        }
+        // if let customScript = WebView.loadJSFile(named: "custom") {
+        //     let userScript = WKUserScript(
+        //         source: customScript,
+        //         injectionTime: .atDocumentStart,
+        //         forMainFrameOnly: true
+        //     )
+        //     webView.configuration.userContentController.addUserScript(userScript)
+        // }
 
         if webUrl.host?.contains("pakeplus.com") == true {
             // load html file

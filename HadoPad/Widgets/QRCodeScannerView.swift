@@ -48,10 +48,8 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
 
         func didFindCode(_ code: String) {
             print("success code", code)
-            if parent.isScanning {
-                DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: Notification.Name("QRCodeScanned"), object: code)
-                }
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: Notification.Name("QRCodeScanned"), object: code)
             }
         }
     }

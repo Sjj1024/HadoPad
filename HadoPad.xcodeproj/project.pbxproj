@@ -10,9 +10,22 @@
 		E4C8FABA2ECC1B3C006BD7D6 /* HadoPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HadoPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E48751B02F29E73400C6A0F6 /* Exceptions for "HadoPad" folder in "HadoPad" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E4C8FAB92ECC1B3C006BD7D6 /* HadoPad */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E4C8FABC2ECC1B3C006BD7D6 /* HadoPad */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E48751B02F29E73400C6A0F6 /* Exceptions for "HadoPad" folder in "HadoPad" target */,
+			);
 			path = HadoPad;
 			sourceTree = "<group>";
 		};
@@ -256,7 +269,9 @@
 				DEVELOPMENT_TEAM = 5C7Q7ZTKVG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HadoPad/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "扫描用户id和url二维码";
+				INFOPLIST_KEY_NSNetworkVolumesUsageDescription = "发送网络请求";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -286,7 +301,9 @@
 				DEVELOPMENT_TEAM = 5C7Q7ZTKVG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HadoPad/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "扫描用户id和url二维码";
+				INFOPLIST_KEY_NSNetworkVolumesUsageDescription = "发送网络请求";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

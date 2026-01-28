@@ -12,6 +12,10 @@ struct ScannerView: View {
     @State var isScanning = false
     // 扫描添加用户
     @Binding var isAddUser: Bool
+    // 扫描添加网址
+    @State var webURl: String = ""
+    // debug
+    @State var debug: Bool = false
 
     // add user
     var addUser: some View {
@@ -52,14 +56,34 @@ struct ScannerView: View {
     // 扫描视图
     var body: some View {
         ZStack {
-            QRCodeScannerView(isScanning: $isScanning)
-                .ignoresSafeArea(.all)
-            VStack {
-                Spacer()
+            if webURl != "" {
+                WebView(webUrl: URL(string: webURl)!, debug: debug)
+                    .ignoresSafeArea(.all)
+            } else {
+                QRCodeScannerView(isScanning: $isScanning)
+                    .ignoresSafeArea(.all)
+                VStack {
+                    Spacer()
+                    if isAddUser {
+                        addUser
+                    } else {
+                        addWebURL
+                    }
+                }
+            }
+        }
+        .onAppear {
+            NotificationCenter.default.addObserver(forName: Notification.Name("QRCodeScanned"), object: nil, queue: .main) { notification in
+                let code = notification.object as? String ?? ""
+                print("Received scanned code in ScannerView:", code)
                 if isAddUser {
-                    addUser
+                    // 处理添加用户逻辑
+                    print("Adding user with code:", code)
+                    // 在这里添加用户的处理逻辑
                 } else {
-                    addWebURL
+                    // 处理网址逻辑
+                    print("Setting web URL to:", code)
+                    webURl = code
                 }
             }
         }
