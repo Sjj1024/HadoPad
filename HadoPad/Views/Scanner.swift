@@ -73,7 +73,7 @@ struct ScannerView: View {
             }
         }
         .statusBarHidden(true)
-        .navigationBarBackButtonHidden()
+        .navigationBarBackButtonHidden(false)
         .onAppear {
             NotificationCenter.default.addObserver(forName: Notification.Name("QRCodeScanned"), object: nil, queue: .main) { notification in
                 let code = notification.object as? String ?? ""
