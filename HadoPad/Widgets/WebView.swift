@@ -18,7 +18,14 @@ struct WebView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> WKWebView {
         let webConfiguration = WKWebViewConfiguration()
+        // 允许本地文件访问
         webConfiguration.preferences.setValue(true, forKey: "allowFileAccessFromFileURLs")
+        // 允许跨域访问
+        webConfiguration.setValue(true, forKey: "allowUniversalAccessFromFileURLs")
+        // 配置媒体权限，允许自动播放和内联播放
+        webConfiguration.allowsInlineMediaPlayback = true
+        webConfiguration.allowsPictureInPictureMediaPlayback = true
+        
         // enable developer extras
         if #available(iOS 16.4, *) {
             webConfiguration.preferences.setValue(true, forKey: "developerExtrasEnabled")
