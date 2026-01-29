@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+    <dict>
+        
+        <!-- 相册访问权限 -->
+        <key>NSPhotoLibraryUsageDescription</key>
+        <string>需要访问相册来选择照片</string>
+        
+        <!-- 相机访问权限 -->
+        <key>NSCameraUsageDescription</key>
+        <string>需要使用相机拍照</string>
+        
+        <!-- 麦克风权限（如果需要） -->
+        <key>NSMicrophoneUsageDescription</key>
+        <string>需要使用麦克风录制视频</string>
+        
+        <!-- 允许文件访问 -->
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+        
+    </dict>
 </plist>
