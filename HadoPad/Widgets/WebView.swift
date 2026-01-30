@@ -13,8 +13,6 @@ struct WebView: UIViewRepresentable {
     let webUrl: URL
     // is debug
     let debug: Bool
-    // userAgent
-    // let userAgent = Bundle.main.object(forInfoDictionaryKey: "USERAGENT") as? String ?? ""
 
     func makeUIView(context: Context) -> WKWebView {
         let webConfiguration = WKWebViewConfiguration()
@@ -25,7 +23,6 @@ struct WebView: UIViewRepresentable {
         // 配置媒体权限，允许自动播放和内联播放
         webConfiguration.allowsInlineMediaPlayback = true
         webConfiguration.allowsPictureInPictureMediaPlayback = true
-        
         // enable developer extras
         if #available(iOS 16.4, *) {
             webConfiguration.preferences.setValue(true, forKey: "developerExtrasEnabled")
@@ -36,24 +33,6 @@ struct WebView: UIViewRepresentable {
         // creat wkwebview
         let webView = WKWebView(frame: .zero, configuration: webConfiguration)
 
-        // debug script
-        // if debug, let debugScript = WebView.loadJSFile(named: "vConsole") {
-        //     let fullScript = debugScript + "\nvar vConsole = new window.VConsole();"
-        //     let userScript = WKUserScript(
-        //         source: fullScript,
-        //         injectionTime: .atDocumentStart,
-        //         forMainFrameOnly: true
-        //     )
-        //     webView.configuration.userContentController.addUserScript(userScript)
-        //     if #available(iOS 16.4, *) {
-        //         webView.isInspectable = true
-        //     }
-        // }
-        // config userAgent
-        // if !userAgent.isEmpty {
-        //     webView.customUserAgent = userAgent
-        // }
-
         // disable double tap zoom
         let script = """
             var meta = document.createElement('meta');
@@ -63,16 +42,6 @@ struct WebView: UIViewRepresentable {
         """
         let scriptInjection = WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
         webView.configuration.userContentController.addUserScript(scriptInjection)
-
-        // load custom script
-        // if let customScript = WebView.loadJSFile(named: "custom") {
-        //     let userScript = WKUserScript(
-        //         source: customScript,
-        //         injectionTime: .atDocumentStart,
-        //         forMainFrameOnly: true
-        //     )
-        //     webView.configuration.userContentController.addUserScript(userScript)
-        // }
 
         if webUrl.host?.contains("pakeplus.com") == true {
             // load html file

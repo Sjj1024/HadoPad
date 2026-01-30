@@ -217,7 +217,6 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
     
     // 处理捕获到的元数据对象
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-//        captureSession.stopRunning()
         print("metadataOutput")
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
